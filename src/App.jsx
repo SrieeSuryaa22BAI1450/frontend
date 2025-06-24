@@ -1,13 +1,13 @@
 import { useState, useEffect } from 'react';
 import { getMovies, login } from './api';
 import Register from './Register';
+import './App.css'; // styles below
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [movies, setMovies] = useState([]);
   const [authError, setAuthError] = useState('');
   const [showRegister, setShowRegister] = useState(false);
-
   const [form, setForm] = useState({ username: '', password: '' });
 
   const fetchMovies = async () => {
@@ -26,7 +26,7 @@ function App() {
       setIsLoggedIn(true);
       setAuthError('');
       fetchMovies();
-    } catch (err) {
+    } catch {
       setAuthError('Invalid username or password');
     }
   };
@@ -51,39 +51,47 @@ function App() {
 
   if (!isLoggedIn) {
     return (
-      <div style={{ padding: '20px' }}>
-        <h2>Login</h2>
-        <form onSubmit={handleLogin}>
+      <div className="container">
+        <h2>🎬 Movie Login</h2>
+        <form className="card" onSubmit={handleLogin}>
           <input
             placeholder="Username"
             value={form.username}
             onChange={e => setForm({ ...form, username: e.target.value })}
             required
-          /><br />
+          />
           <input
             type="password"
             placeholder="Password"
             value={form.password}
             onChange={e => setForm({ ...form, password: e.target.value })}
             required
-          /><br />
+          />
           <button type="submit">Login</button>
+          {authError && <p className="error">{authError}</p>}
         </form>
-        <p style={{ color: 'red' }}>{authError}</p>
-        <button onClick={() => setShowRegister(true)}>Create New Account</button>
+        <button className="switch" onClick={() => setShowRegister(true)}>
+          Create New Account
+        </button>
       </div>
     );
   }
 
   return (
-    <div style={{ padding: '20px' }}>
-      <h2>Movies</h2>
-      <button onClick={logout}>Logout</button>
-      <ul>
+    <div className="container">
+      <div className="top-bar">
+        <h2>🎥 Your Movie List</h2>
+        <button className="logout" onClick={logout}>Logout</button>
+      </div>
+      <div className="movie-list">
+        {movies.length === 0 && <p>No movies found.</p>}
         {movies.map((m, i) => (
-          <li key={i}>{m.title} ({m.year})</li>
+          <div className="movie-card" key={i}>
+            <img src={m.Poster} alt={m.Title} />
+            <p><strong>{m.Title}</strong><br />({m.Year})</p>
+          </div>
         ))}
-      </ul>
+      </div>
     </div>
   );
 }

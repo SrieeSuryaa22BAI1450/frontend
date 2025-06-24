@@ -1,46 +1,82 @@
 body {
-  margin: 0;
   font-family: 'Segoe UI', sans-serif;
-  background-color: #0d1117;
-  color: white;
+  background: #f4f4f4;
+  margin: 0;
+  padding: 0;
 }
 
-.app {
-  padding: 2rem;
+.container {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 20px;
   text-align: center;
 }
 
-.search-box {
-  margin-bottom: 2rem;
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 0 auto;
+  width: 300px;
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
 }
 
 input {
-  padding: 0.5rem;
-  width: 250px;
-  border-radius: 4px;
-  border: none;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
 }
 
 button {
-  padding: 0.5rem 1rem;
-  margin-left: 10px;
-  border: none;
-  background-color: #ff4b2b;
+  padding: 10px;
+  background-color: #3366cc;
   color: white;
-  border-radius: 4px;
+  border: none;
+  border-radius: 6px;
   cursor: pointer;
 }
 
-.movies {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+button:hover {
+  background-color: #254c9e;
+}
+
+.switch {
+  margin-top: 20px;
+  background: #5c5c5c;
+}
+
+.error {
+  color: red;
+  margin-top: 10px;
+}
+
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logout {
+  background: crimson;
+}
+
+.movie-list {
+  display: flex;
+  flex-wrap: wrap;
   gap: 20px;
+  justify-content: center;
+  margin-top: 20px;
 }
 
 .movie-card {
-  background-color: #161b22;
-  padding: 1rem;
-  border-radius: 8px;
+  width: 150px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 0 6px rgba(0,0,0,0.1);
+  padding: 10px;
 }
 
 .movie-card img {
